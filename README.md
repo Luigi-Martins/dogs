@@ -1,23 +1,23 @@
-# 🐶 Dogs - Projeto Frontend React
+# Dogs - Projeto Frontend React
 
 Aplicação frontend desenvolvida com React + Vite, com foco em boas práticas, organização de código e preparação para projetos profissionais.
 
 ---
 
-## 📚 Índice
+## Índice
 
-- 🛠️ Stack principal
-- ⚙️ Pré-requisitos
-- 🚀 Rodando local
-- 📂 Estrutura do projeto
-- 🧹 Lint e padronização
-- 📦 Build do projeto
-- 🔧 Plugins e configurações
-- 📌 Próximos passos
+- Stack principal
+- Pré-requisitos
+- Rodando local
+- Estrutura do projeto
+- Lint e padronização
+- Build do projeto
+- Plugins e configurações
+- Próximos passos
 
 ---
 
-## 🛠️ Stack principal
+## Stack principal
 
 - React
 - Vite
@@ -28,7 +28,7 @@ Aplicação frontend desenvolvida com React + Vite, com foco em boas práticas, 
 
 ---
 
-## ⚙️ Pré-requisitos
+## Pré-requisitos
 
 Antes de começar, você precisa ter instalado:
 
@@ -44,7 +44,7 @@ npm -v
 
 ---
 
-## 🚀 Rodando local (desenvolvimento)
+## Rodando local (desenvolvimento)
 
 ### 1. Instalar dependências
 
@@ -66,7 +66,7 @@ http://localhost:5173/
 
 ---
 
-## 📦 Build do projeto
+## Build do projeto
 
 Gerar build de produção:
 
@@ -82,7 +82,7 @@ npm run preview
 
 ---
 
-## 🧹 Lint e padronização
+## Lint e padronização
 
 Rodar lint:
 
@@ -98,7 +98,7 @@ npm run lint --fix
 
 ---
 
-## 🔧 Plugins e configurações
+## Plugins e configurações
 
 O projeto já vem configurado com:
 
@@ -110,7 +110,7 @@ O projeto já vem configurado com:
 
 ---
 
-## 📂 Estrutura do projeto
+## Estrutura do projeto
 
 ```bash
 src/
@@ -127,7 +127,7 @@ _(estrutura pode evoluir conforme o projeto cresce)_
 
 ---
 
-## 📌 Próximos passos
+## Próximos passos
 
 - [ ] Criar sistema de rotas
 - [ ] Criar páginas (Home, Detalhes, etc.)
@@ -148,7 +148,7 @@ Este projeto foi criado com foco em:
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 Luigi Martins
 
