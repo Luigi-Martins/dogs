@@ -102,11 +102,11 @@ npm run lint --fix
 
 O projeto já vem configurado com:
 
-- ✔️ ESLint configurado
-- ✔️ React Router DOM para navegação
-- ✔️ PropTypes para tipagem de props
-- ✔️ vite-plugin-svgr (uso de SVG como componente React)
-- ✔️ Estrutura inicial com Vite
+- ESLint configurado
+- React Router DOM para navegação
+- PropTypes para tipagem de props
+- vite-plugin-svgr (uso de SVG como componente React)
+- Estrutura inicial com Vite
 
 ---
 
@@ -138,7 +138,7 @@ _(estrutura pode evoluir conforme o projeto cresce)_
 
 ---
 
-## 💡 Objetivo do projeto
+## Objetivo do projeto
 
 Este projeto foi criado com foco em:
 
