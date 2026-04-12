@@ -8,6 +8,16 @@ const Feed = ({ user }) => {
   const [infinite, setInfinite] = React.useState(true);
 
   React.useEffect(() => {
+    document.documentElement.style.overflowY = "scroll";
+    document.body.style.height = "auto";
+    document.body.style.minHeight = "101vh";
+    return () => {
+      document.documentElement.style.overflowY = "initial";
+      document.body.style.minHeight = "initial";
+    };
+  }, []);
+
+  React.useEffect(() => {
     let wait = false;
     function infiniteScroll() {
       if (infinite) {
@@ -45,6 +55,17 @@ const Feed = ({ user }) => {
           setInfinite={setInfinite}
         />
       ))}
+      {!infinite && !user && (
+        <p
+          style={{
+            textAlign: "center",
+            padding: "2rem 0 4rem 0",
+            color: "#888",
+          }}
+        >
+          Não existem mais postagens.
+        </p>
+      )}
     </div>
   );
 };
