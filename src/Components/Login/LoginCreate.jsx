@@ -1,11 +1,11 @@
 import React from "react";
-import Input from "../Components/Forms/Input";
-import Button from "../Components/Forms/Button";
-import useForm from "../Hooks/useForm";
-import { USER_POST } from "../api";
-import { UserContext } from "../UserContext";
-import useFetch from "../Hooks/useFetch";
-import Error from "../Components/Helper/Error";
+import Input from "../Forms/Input";
+import Button from "../Forms/Button";
+import useForm from "../../Hooks/useForm";
+import { USER_POST } from "../../api";
+import { UserContext } from "../../UserContext";
+import useFetch from "../../Hooks/useFetch";
+import Error from "../Helper/Error";
 
 const LoginCreate = () => {
   const username = useForm();
