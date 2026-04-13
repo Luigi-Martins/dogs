@@ -90,7 +90,7 @@ npm run lint
 npm run lint:fix
 ```
 
-# #Comandos úteis (resumo)
+# Comandos úteis (resumo)
 * **Iniciar dev server:**
 ```bash
 npm run dev
