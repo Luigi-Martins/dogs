@@ -1,125 +1,130 @@
-README — Projeto Frontend (React + Vite)
+# README — Projeto Dogs (Frontend & API)
 
-**Resumo:** instruções práticas para rodar, testar, desenvolver e realizar o deploy da aplicação frontend Dogs (React + Vite). Vá direto ao ponto.
+**Resumo:** instruções práticas para rodar, testar e desenvolver o frontend (React + Vite) e integrar com o backend (WordPress Headless). 
+
+---
 
 ## Índice
 
-- [Configuração do Frontend](#configuração-do-frontend)
-  - [Stack principal](#stack-principal)
-  - [Pré-requisitos](#pré-requisitos)
-- [Rodando local (desenvolvimento)](#rodando-local-desenvolvimento)
-- [Build e Deploy](#build-e-deploy)
-- [Comandos úteis (resumo)](#comandos-úteis-resumo)
-- [Estrutura do projeto](#estrutura-do-projeto)
+- [README — Projeto Dogs (Frontend & API)](#readme--projeto-dogs-frontend--api)
+  - [Índice](#índice)
 - [Sobre o Projeto](#sobre-o-projeto)
+- [Configuração do Backend](#configuração-do-backend)
+- [Configuração do Frontend](#configuração-do-frontend)
+    - [Rodar local](#rodar-local)
+    - [Build e Deploy](#build-e-deploy)
+    - [Lint e Formatação](#lint-e-formatação)
+- [Comandos úteis (resumo)](#comandos-úteis-resumo)
+- [Estrutura do projeto (frontend)](#estrutura-do-projeto-frontend)
 
 ---
 
-## Configuração do Frontend
+# Sobre o Projeto
 
-### Stack principal
+O **Dogs** é uma rede social para pets onde usuários podem postar fotos, visualizar o feed, conferir estatísticas e interagir. 
 
-- Node 18 (recomendado)
-- npm (ou pnpm)
-- React 19 (Hooks, Context API)
-- Vite 8
-- React Router DOM v7 (configurado com HashRouter para GitHub Pages)
-- Victory (Gráficos e Estatísticas de usuário)
-- vite-plugin-svgr (Componentização de SVGs)
-- ESLint
+O projeto foi desenvolvido para consolidar conhecimentos avançados em React, focando em:
+* **Autenticação:** JWT com persistência e rotas protegidas.
+* **Performance:** Lazy loading de componentes e gráficos.
+* **UX/UI:** Custom Hooks para validação de formulários e acessibilidade.
+* **API:** Integração com WordPress configurado como Headless CMS.
 
-### Pré-requisitos
-
-- instalar e usar a versão correta do node: `nvm install 18` e `nvm use 18` (ou versão superior).
-- gerenciador de pacotes: `npm` (padrão) ou `pnpm`.
+**Deploy:** [https://luigi-martins.github.io/dogs/](https://luigi-martins.github.io/dogs/)
 
 ---
 
-## Rodando local (desenvolvimento)
+# Configuração do Backend
 
-Instale as dependências:
+**Stack principal**
+* PHP / WordPress (Headless)
+* API REST do WordPress
+* JSON Web Token (JWT) Authentication for WP REST API
 
+---
+
+# Configuração do Frontend
+
+**Stack**
+* React 19 + Vite 8
+* React Router DOM v7 (HashRouter)
+* Victory (Gráficos)
+* ESLint / vite-plugin-svgr
+* Custom Hooks (useFetch, useForm, useMedia)
+
+**Pré-requisitos**
+* Node 18+: `nvm install 18 && nvm use 18`
+* Gerenciador de pacotes: `npm` ou `pnpm`
+
+### Rodar local
+
+1. Instalar dependências:
 ```bash
 npm install
-Inicie o servidor dev local:
+```
 
-Bash
+2. Iniciar dev server:
+```
 npm run dev
-Acessos:
+```
+3. Acessos:
+   
+* Web (Dev): http://localhost:5173
 
-Web (Dev): http://localhost:5173
-
-Build e Deploy
-O projeto está configurado para automação de deploy contínuo (CI/CD simples) na branch gh-pages.
-
-Gerar build de produção localmente (otimização e minificação):
-
-Bash
+# **Build e Deploy**
+1. Gerar build de produção:
+```bash
 npm run build
-Visualizar o build gerado localmente:
-
-Bash
+```
+2. Visualizar build localmente:
+```bash
 npm run preview
-Subir para Produção (Deploy no GitHub Pages):
-
-Bash
+```
+3. Realizar deploy(GitHub Pages):
+```bash
 npm run deploy
-Nota: Este comando executa o script predeploy automaticamente, gerando a pasta dist e empurrando os artefatos estáticos para a branch de deploy.
+```
 
-Comandos úteis (resumo)
-Iniciar dev server:
-
-Bash
-npm run dev
-Limpar e formatar código com ESLint:
-
-Bash
+# **Lint e Formatação**
+```bash
 npm run lint
 npm run lint:fix
-Gerar Deploy Oficial:
-
-Bash
-npm run deploy
-Estrutura do projeto
-Plaintext
-src/
-├── Assets/           # SVGs e imagens estáticas (favicon, ícones)
-├── Components/       # Componentes organizados por domínio e UI globais
-│   ├── Feed/         # Lógica do feed, modal e itens de foto
-│   ├── Forms/        # Inputs e Botões padronizados
-│   ├── Helper/       # Utilitários (Error, Head, Image, Loading, ProtectedRoute)
-│   ├── Login/        # Fluxo de autenticação (LoginCreate, PasswordLost, Reset, etc.)
-│   ├── Photo/        # Visualização da foto, comentários e exclusão
-│   ├── User/         # Dashboard, postagem e gráficos de estatísticas (Victory)
-│   ├── Footer.jsx    # Rodapé global
-│   ├── Header.jsx    # Cabeçalho global com navegação
-│   ├── Home.jsx      # Página inicial (Renderiza o Feed global)
-│   └── NotFound.jsx  # Página 404 personalizada
-├── Hooks/            # Custom Hooks para abstração de lógica
-│   ├── useFetch.jsx  # Wrapper poderoso para requisições com gestão de estado
-│   ├── useForm.jsx   # Hook de validação de formulários via Regex
-│   └── useMedia.jsx  # Controle de responsividade baseado em CSS media queries
-├── api.jsx           # Concentração de todos os endpoints da aplicação
-├── App.css           # Estilos e variáveis globais
-├── App.jsx           # Estrutura principal do Layout e Ponto de entrada do HashRouter
-├── index.jsx         # Ponto de montagem raiz do React no DOM
-└── UserContext.jsx   # Context API para gerenciamento do estado global do usuário
-Sobre o Projeto
-Aplicação de rede social focada em upload e engajamento de fotos de pets.
-
-O backend da aplicação foi desenvolvido em PHP, utilizando a estrutura e o banco de dados do WordPress (Headless CMS) para gerenciar a API REST e a persistência dos dados.
-
-No frontend, o foco deste desenvolvimento foi a consolidação de conhecimentos avançados no ecossistema React, incluindo:
-
-Autenticação via JWT com persistência.
-
-Segurança no Client-Side (Validação restrita de peso de arquivos).
-
-Tratamento avançado de SEO dinâmico via React.
-
-Renderização pesada sob demanda (Lazy Loading) com gráficos da biblioteca Victory.
-
-Autor: Luigi Martins
-
-Deploy: https://luigi-martins.github.io/dogs/
 ```
+
+# #Comandos úteis (resumo)
+* **Iniciar dev server:**
+```bash
+npm run dev
+```
+* **Limpar erros de lint:**
+```bash
+npm run lint:fix
+```
+* **Gerar build de produção:**
+```bash
+npm run build
+```
+* **Publicar no GitHub Pages**
+```bash
+npm run deploy
+```
+
+# Estrutura do projeto (frontend)
+```bash
+src/
+├── Assets/           # SVGs e imagens estáticas
+├── Components/       # Componentes por domínio e globais
+│   ├── Feed/         # Lógica do feed e fotos
+│   ├── Forms/        # Componentes de formulário (Input, Button)
+│   ├── Helper/       # Utilitários (Loading, Error, ProtectedRoute)
+│   ├── Login/        # Fluxo de login e cadastro
+│   ├── Photo/        # Visualização única e comentários
+│   ├── User/         # Dashboard e postagem do usuário
+│   ├── Footer.jsx    # Rodapé
+│   └── Header.jsx    # Cabeçalho
+├── Hooks/            # Custom Hooks (useFetch, useForm, useMedia)
+├── api.jsx           # Configuração dos endpoints
+├── App.jsx           # Layout principal e rotas
+├── UserContext.jsx   # Estado global de autenticação
+└── index.jsx         # Entrada do React
+```
+
