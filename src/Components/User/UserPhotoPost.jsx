@@ -14,6 +14,7 @@ const UserPhotoPost = () => {
   const peso = useForm("number");
   const idade = useForm("number");
   const [img, setImg] = React.useState({});
+  const [imgError, setImgError] = React.useState(null);
   const { data, error, loading, request } = useFetch();
   const navigate = useNavigate();
 
@@ -23,21 +24,43 @@ const UserPhotoPost = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("img", img.raw);
-    formData.append("nome", nome.value);
-    formData.append("peso", peso.value);
-    formData.append("idade", idade.value);
 
-    const token = window.localStorage.getItem("token");
-    const { url, options } = PHOTO_POST(formData, token);
-    request(url, options);
+    if (!img.raw || imgError) {
+      alert("Selecione uma imagem válida");
+      return;
+    }
+
+    if (nome.validate() && peso.validate() && idade.validate()) {
+      const formData = new FormData();
+      formData.append("img", img.raw);
+      formData.append("nome", nome.value);
+      formData.append("peso", peso.value);
+      formData.append("idade", idade.value);
+
+      const token = window.localStorage.getItem("token");
+      const { url, options } = PHOTO_POST(formData, token);
+      request(url, options);
+    }
   }
 
   function handleImgChange({ target }) {
+    const file = target.files[0];
+    const maxSize = 3.4 * 1024 * 1024;
+
+    if (file && file.size > maxSize) {
+      setImgError(
+        "A imagem é muito grande. O tamanho máximo permitido é 3.4MB.",
+      );
+
+      target.value = "";
+      setImg({});
+      return;
+    }
+
+    setImgError(null);
     setImg({
-      preview: URL.createObjectURL(target.files[0]),
-      raw: target.files[0],
+      preview: URL.createObjectURL(file),
+      raw: file,
     });
   }
 
@@ -60,7 +83,7 @@ const UserPhotoPost = () => {
         ) : (
           <Button>Enviar</Button>
         )}
-        <Error error={error} />
+        <Error error={error || imgError} />
       </form>
       <div>
         {img.preview && (
