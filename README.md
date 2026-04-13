@@ -1,157 +1,125 @@
-# Dogs - Projeto Frontend React
+README — Projeto Frontend (React + Vite)
 
-Aplicação frontend desenvolvida com React + Vite, com foco em boas práticas, organização de código e preparação para projetos profissionais.
-
----
+**Resumo:** instruções práticas para rodar, testar, desenvolver e realizar o deploy da aplicação frontend Dogs (React + Vite). Vá direto ao ponto.
 
 ## Índice
 
-- Stack principal
-- Pré-requisitos
-- Rodando local
-- Estrutura do projeto
-- Lint e padronização
-- Build do projeto
-- Plugins e configurações
-- Próximos passos
+- [Configuração do Frontend](#configuração-do-frontend)
+  - [Stack principal](#stack-principal)
+  - [Pré-requisitos](#pré-requisitos)
+- [Rodando local (desenvolvimento)](#rodando-local-desenvolvimento)
+- [Build e Deploy](#build-e-deploy)
+- [Comandos úteis (resumo)](#comandos-úteis-resumo)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Sobre o Projeto](#sobre-o-projeto)
 
 ---
 
-## Stack principal
+## Configuração do Frontend
 
-- React
-- Vite
-- React Router DOM
-- PropTypes
+### Stack principal
+
+- Node 18 (recomendado)
+- npm (ou pnpm)
+- React 19 (Hooks, Context API)
+- Vite 8
+- React Router DOM v7 (configurado com HashRouter para GitHub Pages)
+- Victory (Gráficos e Estatísticas de usuário)
+- vite-plugin-svgr (Componentização de SVGs)
 - ESLint
-- vite-plugin-svgr
 
----
+### Pré-requisitos
 
-## Pré-requisitos
-
-Antes de começar, você precisa ter instalado:
-
-- Node.js (recomendado versão 18+)
-- npm (ou yarn/pnpm)
-
-Verificar versão:
-
-```bash
-node -v
-npm -v
-```
+- instalar e usar a versão correta do node: `nvm install 18` e `nvm use 18` (ou versão superior).
+- gerenciador de pacotes: `npm` (padrão) ou `pnpm`.
 
 ---
 
 ## Rodando local (desenvolvimento)
 
-### 1. Instalar dependências
+Instale as dependências:
 
 ```bash
 npm install
-```
+Inicie o servidor dev local:
 
-### 2. Rodar o projeto
-
-```bash
+Bash
 npm run dev
-```
+Acessos:
 
-### 3. Acessar no navegador
+Web (Dev): http://localhost:5173
 
-```
-http://localhost:5173/
-```
+Build e Deploy
+O projeto está configurado para automação de deploy contínuo (CI/CD simples) na branch gh-pages.
 
----
+Gerar build de produção localmente (otimização e minificação):
 
-## Build do projeto
-
-Gerar build de produção:
-
-```bash
+Bash
 npm run build
-```
+Visualizar o build gerado localmente:
 
-Visualizar build:
-
-```bash
+Bash
 npm run preview
-```
+Subir para Produção (Deploy no GitHub Pages):
 
----
+Bash
+npm run deploy
+Nota: Este comando executa o script predeploy automaticamente, gerando a pasta dist e empurrando os artefatos estáticos para a branch de deploy.
 
-## Lint e padronização
+Comandos úteis (resumo)
+Iniciar dev server:
 
-Rodar lint:
+Bash
+npm run dev
+Limpar e formatar código com ESLint:
 
-```bash
+Bash
 npm run lint
-```
+npm run lint:fix
+Gerar Deploy Oficial:
 
-Corrigir automaticamente:
-
-```bash
-npm run lint --fix
-```
-
----
-
-## Plugins e configurações
-
-O projeto já vem configurado com:
-
-- ESLint configurado
-- React Router DOM para navegação
-- PropTypes para tipagem de props
-- vite-plugin-svgr (uso de SVG como componente React)
-- Estrutura inicial com Vite
-
----
-
-## Estrutura do projeto
-
-```bash
+Bash
+npm run deploy
+Estrutura do projeto
+Plaintext
 src/
-├── App.jsx
-├── index.jsx
-├── assets/
-├── components/
-├── pages/
-├── routes/
-└── styles/
+├── Assets/           # SVGs e imagens estáticas (favicon, ícones)
+├── Components/       # Componentes organizados por domínio e UI globais
+│   ├── Feed/         # Lógica do feed, modal e itens de foto
+│   ├── Forms/        # Inputs e Botões padronizados
+│   ├── Helper/       # Utilitários (Error, Head, Image, Loading, ProtectedRoute)
+│   ├── Login/        # Fluxo de autenticação (LoginCreate, PasswordLost, Reset, etc.)
+│   ├── Photo/        # Visualização da foto, comentários e exclusão
+│   ├── User/         # Dashboard, postagem e gráficos de estatísticas (Victory)
+│   ├── Footer.jsx    # Rodapé global
+│   ├── Header.jsx    # Cabeçalho global com navegação
+│   ├── Home.jsx      # Página inicial (Renderiza o Feed global)
+│   └── NotFound.jsx  # Página 404 personalizada
+├── Hooks/            # Custom Hooks para abstração de lógica
+│   ├── useFetch.jsx  # Wrapper poderoso para requisições com gestão de estado
+│   ├── useForm.jsx   # Hook de validação de formulários via Regex
+│   └── useMedia.jsx  # Controle de responsividade baseado em CSS media queries
+├── api.jsx           # Concentração de todos os endpoints da aplicação
+├── App.css           # Estilos e variáveis globais
+├── App.jsx           # Estrutura principal do Layout e Ponto de entrada do HashRouter
+├── index.jsx         # Ponto de montagem raiz do React no DOM
+└── UserContext.jsx   # Context API para gerenciamento do estado global do usuário
+Sobre o Projeto
+Aplicação de rede social focada em upload e engajamento de fotos de pets.
+
+O backend da aplicação foi desenvolvido em PHP, utilizando a estrutura e o banco de dados do WordPress (Headless CMS) para gerenciar a API REST e a persistência dos dados.
+
+No frontend, o foco deste desenvolvimento foi a consolidação de conhecimentos avançados no ecossistema React, incluindo:
+
+Autenticação via JWT com persistência.
+
+Segurança no Client-Side (Validação restrita de peso de arquivos).
+
+Tratamento avançado de SEO dinâmico via React.
+
+Renderização pesada sob demanda (Lazy Loading) com gráficos da biblioteca Victory.
+
+Autor: Luigi Martins
+
+Deploy: https://luigi-martins.github.io/dogs/
 ```
-
-_(estrutura pode evoluir conforme o projeto cresce)_
-
----
-
-## Próximos passos
-
-- [ ] Criar sistema de rotas
-- [ ] Criar páginas (Home, Detalhes, etc.)
-- [ ] Componentização da UI
-- [ ] Integração com API
-- [ ] Melhorar organização de pastas
-- [ ] Adicionar testes futuramente
-
----
-
-## Objetivo do projeto
-
-Este projeto foi criado com foco em:
-
-- Evolução como desenvolvedor frontend
-- Prática com ferramentas modernas do ecossistema React
-- Construção de portfólio profissional
-
----
-
-## Autor
-
-Luigi Martins
-
-- GitHub: https://github.com/Luigi-Martins
-
----
